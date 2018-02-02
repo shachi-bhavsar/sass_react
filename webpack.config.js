@@ -1,4 +1,4 @@
-//var path = require('path');
+
 var paths = require('path');
 module.exports = {
 
@@ -24,12 +24,11 @@ module.exports = {
             {
                 test: /\.sass$/,
                 include: paths.resolve(__dirname, 'src'),
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ]
+                loader: 'style-loader!css-loader!sass-loader'
             }
         ]
-    }
+    },
+    node: {
+        fs: 'empty'
+      }
 };
