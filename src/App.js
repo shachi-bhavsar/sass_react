@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import {JsonTree} from 'react-editable-json-tree'
 import data from './data.json'
+
 require('./App.sass')
-
-var fs = require("fs")
-var writeJsonFile = require('write-json-file')
 var jsonfile = require('jsonfile')
-
-
+const writeJsonFile = require('write-json-file');
+//var fs = require("fs");
 class App extends Component {
 
 	  constructor(props) {
@@ -25,19 +23,10 @@ class App extends Component {
         let updatedData = JSON.stringify(data);
         console.log(updatedData);
         var file = 'tmp.json'
-        //first approach
-        fs.writeFile(file, updatedData, function(error) {
-          if (error) {
-            console.error("write error:  " + error.message);
-          } else {
-            console.log("Successful Write to ");
-          }
-        });
-        //second approach
+       
         writeJsonFile(file, updatedData).then(() => {
           console.log('done');
         });
-        //third approach
         jsonfile.writeFile(file, updatedData,function (err) {
           console.error(err)
         });
